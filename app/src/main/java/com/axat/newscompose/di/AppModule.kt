@@ -1,6 +1,8 @@
 package com.axat.newscompose.di
 
 import com.axat.newscompose.BuildConfig
+import com.axat.newscompose.model.ApiKey
+import com.axat.newscompose.network.RetrofitApiInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
