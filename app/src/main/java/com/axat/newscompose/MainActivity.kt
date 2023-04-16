@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.axat.newscompose.presentation.screens.HomeScreen
 import com.axat.newscompose.ui.theme.NewsComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +26,18 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
 
-                    HomeScreen()
+                    MyApp {
+                        HomeScreen()
+                    }
 
                 }
             }
         }
     }
+}
+
+
+@Composable
+fun MyApp(content: @Composable ()->Unit) {
+    content()
 }
