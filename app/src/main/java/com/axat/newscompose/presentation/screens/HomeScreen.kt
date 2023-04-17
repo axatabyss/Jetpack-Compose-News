@@ -42,7 +42,6 @@ fun HomeScreen(viewModel: NewsViewModel = hiltViewModel()) {
         Box(modifier = Modifier.fillMaxSize()) {
             Text(text = res.error, modifier = Modifier.align(Alignment.Center))
         }
-
     }
 
 
@@ -52,7 +51,6 @@ fun HomeScreen(viewModel: NewsViewModel = hiltViewModel()) {
                 ArticleItem(it)
             }
         }
-
     }
 
 
@@ -65,11 +63,8 @@ fun ArticleItem(it: Article) {
 
         Image(
             painter = rememberAsyncImagePainter(model = it.urlToImage), contentDescription = null,
-            modifier = Modifier
-                .height(300.dp)
-                .fillMaxWidth(),
+            modifier = Modifier.height(300.dp).fillMaxWidth(),
             contentScale = ContentScale.Crop
-
         )
 
         Text(
