@@ -1,6 +1,7 @@
 package com.axat.newscompose.presentation.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,12 +22,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.axat.newscompose.domain.model.Article
 import com.axat.newscompose.presentation.viewmodel.NewsViewModel
+import com.axat.newscompose.utils.Destination
 
 @Composable
-fun HomeScreen(viewModel: NewsViewModel = hiltViewModel()) {
+fun HomeScreen(navController: NavHostController, viewModel: NewsViewModel = hiltViewModel()) {
 
     val res = viewModel.articles.value
 
@@ -48,7 +51,7 @@ fun HomeScreen(viewModel: NewsViewModel = hiltViewModel()) {
     res.data?.let {
         LazyColumn {
             items(it) {
-                ArticleItem(it)
+                ArticleItem(it, navController)
             }
         }
     }
@@ -57,13 +60,17 @@ fun HomeScreen(viewModel: NewsViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun ArticleItem(it: Article) {
+fun ArticleItem(it: Article, navController: NavHostController) {
 
-    Column(modifier = Modifier) {
+    Column(modifier = Modifier.clickable {
+        navController.navigate(Destination.NewsScreen.route)
+    }) {
 
         Image(
             painter = rememberAsyncImagePainter(model = it.urlToImage), contentDescription = null,
-            modifier = Modifier.height(300.dp).fillMaxWidth(),
+            modifier = Modifier
+                .height(300.dp)
+                .fillMaxWidth(),
             contentScale = ContentScale.Crop
         )
 
