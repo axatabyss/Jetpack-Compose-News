@@ -1,5 +1,9 @@
 package com.axat.newscompose.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Article(
 
     val content: String,
@@ -7,4 +11,4 @@ data class Article(
     val title: String,
     val urlToImage: String
 
-)
+) : Parcelable
